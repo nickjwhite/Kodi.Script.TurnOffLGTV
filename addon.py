@@ -185,7 +185,7 @@ class LGTVNetworkShutdown2012:
     def check_registration(self,ip_address):
         data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><auth><type>AuthReq</type><value>" + self.client_key + "</value></auth>"
         try:
-            request = urllib.Request('http://'+ip_address+':8080/roap/api/auth',data=data,headers=self.HTTP_HEADERS)
+            request = urllib.request.Request('http://'+ip_address+':8080/roap/api/auth',data=data,headers=self.HTTP_HEADERS)
             response = urllib.request.urlopen(request, timeout=self.HTTP_TIMEOUT)
             print(response.read())
             return True
@@ -221,7 +221,7 @@ class LGTVNetworkShutdown2012:
     def send_command(self,ip_address,command):
         data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><command><name>HandleKeyInput</name><value>" + command + "</value></command>"
         try:
-            request = urllib.Request('http://'+ip_address+':8080/roap/api/command',data=data,headers=self.HTTP_HEADERS)
+            request = urllib.request.Request('http://'+ip_address+':8080/roap/api/command',data=data,headers=self.HTTP_HEADERS)
             response = urllib.request.urlopen(request, timeout=self.HTTP_TIMEOUT)
             Dialog.notification("LG TV 2012-2014","Command sent")
             xbmc_log.log("Command sent")
